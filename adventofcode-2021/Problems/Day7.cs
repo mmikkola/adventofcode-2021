@@ -44,16 +44,8 @@ namespace adventofcode_2021.Problems
 
         private int CalculateFuelCost(int from, int to)
         {
-            int distance = Math.Abs(from - to);
-
-            int cost = 0;
-
-            for(int i = 1; i <= distance; i++)
-            {
-                cost += i;
-            }
-
-            return cost;
+            int distance = Math.Abs(from - to);                     
+            return (distance * (distance + 1)) / 2;
         }
     }
 }
