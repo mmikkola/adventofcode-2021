@@ -42,20 +42,56 @@ namespace adventofcode_2021.Problems
 
             public int GetSumOfRiskLevels()
             {
-                int riskSum = 0;
+                IEnumerable<(int, int)>? lowPoints = GetLowPoints();
 
-                for(int y = 0; y < heights.GetLength(1); y++)
+                int sum = 0;
+
+                foreach(var point in lowPoints)
                 {
-                    for(int x = 0; x < heights.GetLength(0); x++)
+                    sum += heights[point.Item1, point.Item2] + 1;
+                }
+
+                return sum;
+            }
+
+            public IEnumerable<(int, int)> GetLowPoints()
+            {
+                for (int y = 0; y < heights.GetLength(1); y++)
+                {
+                    for (int x = 0; x < heights.GetLength(0); x++)
                     {
-                        if(IsLowPoint(x, y))
+                        if (IsLowPoint(x, y))
                         {
-                            riskSum += 1 + heights[x, y];
+                            yield return (x, y);
                         }
                     }
                 }
+            }
 
-                return riskSum;
+            public int FindFlows(HashSet<(int, int)> visited, (int, int) point)
+            {
+                if (visited.Contains(point))
+                    return 0; 
+                
+                visited.Add(point);
+
+                int size = 0;
+
+                int x = point.Item1; int y = point.Item2;
+
+                if (heights[x, y] == 9)
+                    return size;
+
+                if (x > 0)
+                    size += FindFlows(visited, (x - 1, y));
+                if (y > 0)
+                    size += FindFlows(visited, (x, y - 1));
+                if (x < heights.GetLength(0) - 1)
+                    size += FindFlows(visited, (x + 1, y));
+                if (y < heights.GetLength(1) - 1)
+                    size += FindFlows(visited, (x, y + 1));
+
+                return ++size;
             }
         }
 
@@ -69,7 +105,22 @@ namespace adventofcode_2021.Problems
 
         public int Part2(string[] input)
         {
-            throw new NotImplementedException();
+            var heightMap = new HeightMap(input.Select(r => r.Select(c => c - '0')));
+            var basinSizes = new List<int>();
+
+            IEnumerable<(int, int)> lowPoints = heightMap.GetLowPoints();
+
+            foreach (var lowPoint in lowPoints)
+            {
+                var visited = new HashSet<(int, int)>();
+                int basinSize = 0;
+
+                basinSize += heightMap.FindFlows(visited, lowPoint);
+
+                basinSizes.Add(basinSize);
+            }
+
+            return basinSizes.OrderByDescending(i => i).Take(3).Aggregate(1, (acc, val) => acc * val);
         }
     }
 }

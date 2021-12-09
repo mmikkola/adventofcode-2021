@@ -30,7 +30,7 @@ namespace adventofcode_2021.tests
             var day = new Day9();
             var result = day.Part2(input);
 
-            result.Should().Be(61229);
+            result.Should().Be(1134);
         }
     }
 }

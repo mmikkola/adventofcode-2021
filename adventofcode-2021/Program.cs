@@ -2,7 +2,7 @@
 using adventofcode_2021.Problems;
 
 var input = File.ReadAllLines("Inputs/day9.txt");
-var result = (new Day9()).Part1(input);
+var result = (new Day9()).Part2(input);
 
 Console.WriteLine(result);
 Console.ReadLine();
