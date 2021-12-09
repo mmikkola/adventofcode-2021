@@ -8,9 +8,9 @@ namespace adventofcode_2021.Problems
 {
     public class Day1
     {
-        public int Part1(string[] args)
+        public int Part1(string[] input)
         {
-            int[] numbers = args.Select(x => int.Parse(x)).ToArray();
+            int[] numbers = input.Select(x => int.Parse(x)).ToArray();
 
             int cnt = 0;
 
@@ -23,9 +23,9 @@ namespace adventofcode_2021.Problems
             return cnt;
         }
 
-        public int Part2(string[] args)
+        public int Part2(string[] input)
         {
-            int[] numbers = args.Select(x => int.Parse(x)).ToArray();
+            int[] numbers = input.Select(x => int.Parse(x)).ToArray();
 
             int cnt = 0;
             int prevSum = int.MaxValue;
