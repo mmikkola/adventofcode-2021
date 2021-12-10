@@ -10,12 +10,121 @@ namespace adventofcode_2021.Problems
     {
         public int Part1(string[] input)
         {
-            throw new NotImplementedException();
+            var openStack = new Stack<char>();
+
+            int score = 0;
+
+            foreach(string line in input)
+            {
+                foreach(char symbol in line)
+                {
+                    if("([{<".Contains(symbol))
+                    {
+                        openStack.Push(symbol);
+                    }
+                    else
+                    {
+                        char lastOpen = openStack.Pop();
+                        switch(symbol)
+                        {
+                            case ')':
+                                if (lastOpen != '(')
+                                    score += 3;
+                                break;
+                            case ']':
+                                if (lastOpen != '[')
+                                    score += 57;
+                                break;
+                            case '}':
+                                if (lastOpen != '{')
+                                    score += 1197;
+                                break;
+                            case '>':
+                                if (lastOpen != '<')
+                                    score += 25137;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            return score;
         }
 
-        public int Part2(string[] input)
+        public long Part2(string[] input)
         {
-            throw new NotImplementedException();
+            var scores = ScoreIncompleteLines(input);
+
+            var orderedScores = scores.OrderBy(s => s);
+
+            return orderedScores.ElementAt(scores.Count() / 2);
+        }
+
+        private static IEnumerable<long> ScoreIncompleteLines(string[] input)
+        {
+            foreach (string line in input)
+            {
+                var openStack = new Stack<char>();
+                bool incomplete = true;
+
+                foreach (char symbol in line)
+                {
+                    if ("([{<".Contains(symbol))
+                    {
+                        openStack.Push(symbol);
+                    }
+                    else
+                    {
+                        char lastOpen = openStack.Pop();
+                        switch (symbol)
+                        {
+                            case ')':
+                                if (lastOpen != '(')
+                                    incomplete = false;
+                                break;
+                            case ']':
+                                if (lastOpen != '[')
+                                    incomplete = false;
+                                break;
+                            case '}':
+                                if (lastOpen != '{')
+                                    incomplete = false;
+                                break;
+                            case '>':
+                                if (lastOpen != '<')
+                                    incomplete = false;
+                                break;
+                        }
+                    }
+                }
+
+                if (incomplete)
+                {
+                    long score = 0;
+                    char closingBracket;
+                    while(openStack.TryPop(out closingBracket))
+                    {
+                        switch(closingBracket)
+                        {
+                            case '(':
+                                score = (score * 5) + 1;
+                                break;
+                            case '[':
+                                score = (score * 5) + 2;
+                                break;
+                            case '{':
+                                score = (score * 5) + 3;
+                                break;
+                            case '<':
+                                score = (score * 5) + 4;
+                                break;
+                        }
+                    }
+                    
+                    yield return score;
+                }
+
+            }
         }
     }
 }

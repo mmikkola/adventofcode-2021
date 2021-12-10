@@ -8,7 +8,16 @@ namespace adventofcode_2021.tests
     {
         private readonly string[] input =
         {
-
+            "[({(<(())[]>[[{[]{<()<>>",
+            "[(()[<>])]({[<{<<[]>>(",
+            "{([(<{}[<>[]}>{[]{[(<()>",
+            "(((({<>}<{<{<>}{[]{[]{}",
+            "[[<[([]))<([[{}[[()]]]",
+            "[{[{({}]{}}([{[{{{}}([]",
+            "{<[[]]>}<{[{[{[]{()[[[]",
+            "[<(<(<(<{}))><([]([]()",
+            "<{([([[(<>()){}]>(<<{{",
+            "<{([{{}}[<[[[<>{}]]]>[]]"
         };
 
         [Fact]
@@ -17,7 +26,7 @@ namespace adventofcode_2021.tests
             var day10 = new Day10();
             int result = day10.Part1(input);
 
-            result.Should().Be(0);
+            result.Should().Be(26397);
         }
 
         [Fact]
@@ -26,7 +35,7 @@ namespace adventofcode_2021.tests
             var day10 = new Day10();
             int result = day10.Part2(input);
 
-            result.Should().Be(0);
+            result.Should().Be(288957);
         }
     }
 }
