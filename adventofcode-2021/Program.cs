@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using adventofcode_2021.Problems;
 
-var input = File.ReadAllLines("Inputs/day10.txt");
 var day = new Day10();
 var timer = System.Diagnostics.Stopwatch.StartNew();
+var input = File.ReadAllLines($"Inputs/{day.GetType().Name.ToLower()}.txt");
+Console.WriteLine($"Running for {day.GetType().Name}");
 try
 {
     var part1 = day.Part1(input);
