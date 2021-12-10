@@ -25,7 +25,7 @@ namespace adventofcode_2021.tests
             };
 
             var day3 = new Day3();
-            var result = day3.Part1(input);
+            var result = (int)day3.Part1(input);
 
             result.Should().Be(198);
         }
@@ -49,7 +49,7 @@ namespace adventofcode_2021.tests
             };
 
             var day3 = new Day3();
-            var result = day3.Part2(input);
+            var result = (int)day3.Part2(input);
 
             result.Should().Be(230);
         }

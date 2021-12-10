@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day4
+    public class Day4 : ProblemBase
     {
         private struct Cell
         {
@@ -14,7 +14,7 @@ namespace adventofcode_2021.Problems
             public bool Marked;
         }
 
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             var numbers = input[0].Split(',').Select(int.Parse);
 
@@ -108,7 +108,7 @@ namespace adventofcode_2021.Problems
             public bool GotBingo;
             public Cell[][] Board;
         }
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             var numbers = input[0].Split(',').Select(int.Parse);
 

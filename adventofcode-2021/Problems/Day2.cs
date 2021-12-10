@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day2
+    public class Day2 : ProblemBase
     {
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             int position = 0;
             int depth = 0;
@@ -39,7 +39,7 @@ namespace adventofcode_2021.Problems
             return position * depth;
         }
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             int position = 0;
             int depth = 0;

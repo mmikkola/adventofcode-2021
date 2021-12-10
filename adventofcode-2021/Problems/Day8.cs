@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day8
+    public class Day8 : ProblemBase
     {
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             int ones, fours, sevens, eights;
 
@@ -27,7 +27,7 @@ namespace adventofcode_2021.Problems
             return ones + sevens + eights + fours;
         }        
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             var patternToValue = new Dictionary<string, int>()
             {

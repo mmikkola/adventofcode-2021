@@ -13,7 +13,7 @@ namespace adventofcode_2021.tests
 
             var day2 = new Day2();
 
-            int result = day2.Part1(input);
+            int result = (int)day2.Part1(input);
 
             result.Should().Be(150);
         }
@@ -25,7 +25,7 @@ namespace adventofcode_2021.tests
 
             var day2 = new Day2();
 
-            int result = day2.Part2(input);
+            int result = (int)day2.Part2(input);
 
             result.Should().Be(900);
         }

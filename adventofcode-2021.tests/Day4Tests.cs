@@ -33,7 +33,7 @@ namespace adventofcode_2021.tests
         public void Part1Test()
         {
             var day4 = new Day4();
-            var result = day4.Part1(input);
+            var result = (int)day4.Part1(input);
 
             result.Should().Be(4512);
         }
@@ -42,7 +42,7 @@ namespace adventofcode_2021.tests
         public void Part2Test()
         {
             var day4 = new Day4();
-            var result = day4.Part2(input);
+            var result = (int)day4.Part2(input);
 
             result.Should().Be(1924);
         }

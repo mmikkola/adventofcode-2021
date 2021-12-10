@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day5
+    public class Day5 : ProblemBase
     {
         private struct Point
         {
@@ -90,13 +90,13 @@ namespace adventofcode_2021.Problems
             return overlaps.Count(kvp => kvp.Value > 1);
         }
 
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             return FindOverlaps(input, true);
         }
 
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             return FindOverlaps(input, false);
         }

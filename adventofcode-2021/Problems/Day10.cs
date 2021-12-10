@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day10
+    public class Day10 : ProblemBase
     {
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             var openStack = new Stack<char>();
 
@@ -51,7 +51,7 @@ namespace adventofcode_2021.Problems
             return score;
         }
 
-        public long Part2(string[] input)
+        public override object Part2(string[] input)
         {
             var scores = ScoreIncompleteLines(input);
 

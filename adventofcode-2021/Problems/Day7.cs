@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day7
+    public class Day7 : ProblemBase
     {
-        public int Part1(string[] args)
+        public override object Part1(string[] args)
         {
             int[] crabs = args[0].Split(',').Select(int.Parse).ToArray();
 
@@ -25,7 +25,7 @@ namespace adventofcode_2021.Problems
             return distanceCosts.Min();
         }
 
-        public int Part2(string[] args)
+        public override object Part2(string[] args)
         {
             int[] crabs = args[0].Split(',').Select(int.Parse).ToArray();
 

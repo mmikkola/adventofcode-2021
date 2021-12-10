@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day3
+    public class Day3 : ProblemBase
     {
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             int inputLength = input[0].Length;
             int[] ones = new int[inputLength];
@@ -55,7 +55,7 @@ namespace adventofcode_2021.Problems
             return gammaRate * epsilonRate;
         }
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             string oxygenRatingRaw = FindNextNumbers(input, 0, true).First();
             string co2ScrubberRatingRaw = FindNextNumbers(input, 0, false).First();

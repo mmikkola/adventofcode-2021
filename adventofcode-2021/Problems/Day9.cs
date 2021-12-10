@@ -32,17 +32,17 @@ namespace adventofcode_2021.Problems
             }
             private bool IsLowPoint(int x, int y)
             {
-                bool top = y == 0 ? true : heights[x, y] < heights[x, y - 1];
-                bool bottom = y == heights.GetLength(1) - 1 ? true : heights[x, y] < heights[x, y + 1];
-                bool left = x == 0 ? true : heights[x, y] < heights[x - 1, y];
-                bool right = x == heights.GetLength(0) - 1 ? true : heights[x, y] < heights[x + 1, y];
+                bool top = y == 0 || heights[x, y] < heights[x, y - 1];
+                bool bottom = y == heights.GetLength(1) - 1 || heights[x, y] < heights[x, y + 1];
+                bool left = x == 0 || heights[x, y] < heights[x - 1, y];
+                bool right = x == heights.GetLength(0) - 1 || heights[x, y] < heights[x + 1, y];
 
                 return top && bottom && left && right;
             }
 
             public int GetSumOfRiskLevels()
             {
-                IEnumerable<(int, int)>? lowPoints = GetLowPoints();
+                IEnumerable<(int, int)> lowPoints = GetLowPoints();
 
                 int sum = 0;
 

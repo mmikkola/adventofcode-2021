@@ -24,7 +24,7 @@ namespace adventofcode_2021.tests
         public void Part1Test()
         {
             var day5 = new Day5();
-            var result = day5.Part1(input);
+            var result = (int)day5.Part1(input);
 
             result.Should().Be(5);
         }

@@ -1,20 +1,26 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using adventofcode_2021.Problems;
 
-var day = new Day10();
+int day;
+if (args.Length == 0 || !int.TryParse(args[0], out day))
+    day = DateTime.Now.Day;
+
+var asm = System.Reflection.Assembly.GetExecutingAssembly().GetName();
+var problem = (ProblemBase)Activator.CreateInstance(asm.Name, $"adventofcode_2021.Problems.Day{day}").Unwrap();
+
+Console.WriteLine($"Running for day {day}");
+
 var timer = System.Diagnostics.Stopwatch.StartNew();
-var input = File.ReadAllLines($"Inputs/{day.GetType().Name.ToLower()}.txt");
-Console.WriteLine($"Running for {day.GetType().Name}");
 try
 {
-    var part1 = day.Part1(input);
+    var part1 = problem.Part1();
     long elapsed = timer.ElapsedMilliseconds;
     Console.WriteLine($"Solved Part 1 in {elapsed}ms. Result: {part1}");
 } catch { }
 timer.Restart();
 try
 {
-    var part2 = day.Part2(input);
+    var part2 = problem.Part2();
     long elapsed = timer.ElapsedMilliseconds;
     Console.WriteLine($"Solved Part 2 in {elapsed}ms. Result: {part2}");
 }

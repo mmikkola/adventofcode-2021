@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day1
+    public class Day1 : ProblemBase
     {
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             int[] numbers = input.Select(x => int.Parse(x)).ToArray();
 
@@ -23,7 +23,7 @@ namespace adventofcode_2021.Problems
             return cnt;
         }
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             int[] numbers = input.Select(x => int.Parse(x)).ToArray();
 
