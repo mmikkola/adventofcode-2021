@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace adventofcode_2021.Problems
 {
-    public class Day9
+    public class Day9 : ProblemBase
     {
         private class HeightMap
         {
@@ -96,14 +96,14 @@ namespace adventofcode_2021.Problems
         }
 
 
-        public int Part1(string[] input)
+        public override object Part1(string[] input)
         {
             var heightMap = new HeightMap(input.Select(r => r.Select(c => c - '0')));
 
             return heightMap.GetSumOfRiskLevels();
         }
 
-        public int Part2(string[] input)
+        public override object Part2(string[] input)
         {
             var heightMap = new HeightMap(input.Select(r => r.Select(c => c - '0')));
             var basinSizes = new List<int>();
