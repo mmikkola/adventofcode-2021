@@ -25,14 +25,22 @@ namespace adventofcode_2021.Problems
                 neighbours.Add(cave);
             }
 
-            public List<Queue<Cave>> FindAllPathsTo(Cave cave, HashSet<Cave> visited)
+            public List<Queue<Cave>> FindAllPathsTo(Cave cave, HashSet<Cave> visited, bool allowDoubleVisit)
             {
-                if(visited.Contains(this))
-                    return new List<Queue<Cave>>();
                 if (this is SmallCave)
-                    visited.Add(this);
+                {
+                    if ((this.Name.Equals("start") || this.Name.Equals("end")) && visited.Contains(this))
+                        return new List<Queue<Cave>>();
 
-                if(this == cave)
+                    if (visited.Contains(this) && !allowDoubleVisit)
+                        return new List<Queue<Cave>>();
+                    else if (visited.Contains(this) && allowDoubleVisit)
+                        allowDoubleVisit = false;
+
+                    visited.Add(this);
+                }
+
+                if (this == cave)
                 {
                     var q = new Queue<Cave>();
                     q.Enqueue(this);
@@ -41,9 +49,9 @@ namespace adventofcode_2021.Problems
 
                 var paths = new List<Queue<Cave>>();
 
-                foreach(var n in neighbours)
+                foreach (var n in neighbours)
                 {
-                    foreach (var p in n.FindAllPathsTo(cave, new HashSet<Cave>(visited)))
+                    foreach (var p in n.FindAllPathsTo(cave, new HashSet<Cave>(visited), allowDoubleVisit))
                     {
                         p.Enqueue(this);
                         paths.Add(p);
@@ -51,7 +59,7 @@ namespace adventofcode_2021.Problems
                 }
 
                 return paths;
-            }
+            }    
         }
 
         private class SmallCave : Cave
@@ -74,7 +82,7 @@ namespace adventofcode_2021.Problems
 
             Cave start = vertices["start"];
 
-            List<Queue<Cave>> paths = start.FindAllPathsTo(vertices["end"], new HashSet<Cave>());
+            List<Queue<Cave>> paths = start.FindAllPathsTo(vertices["end"], new HashSet<Cave>(), false);
 
             return paths.Count();
         }
@@ -85,8 +93,9 @@ namespace adventofcode_2021.Problems
 
             Cave start = vertices["start"];
 
+            List<Queue<Cave>> paths = start.FindAllPathsTo(vertices["end"], new HashSet<Cave>(), true);
 
-            return -1;
+            return paths.Count();
         }
 
         private static Dictionary<string, Cave> ParseInput(string[] input)
