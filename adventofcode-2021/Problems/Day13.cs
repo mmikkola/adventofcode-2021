@@ -92,7 +92,7 @@ namespace adventofcode_2021.Problems
                     if (dots.Contains((x, y)))
                         sb.Append('#');
                     else
-                        sb.Append('.');
+                        sb.Append(' ');
                 }
                 sb.AppendLine();
             }    
