@@ -7,7 +7,7 @@ if (args.Length > 0)
 {    
     if(args[0].Equals("all"))
     {
-        int today = DateTime.Now.Day;
+        int today = DateTime.Now > new DateTime(2021, 12, 25) ? 25 : DateTime.Now.Day;
         daysToRun.AddRange(Enumerable.Range(1, today));
     }
     else if(int.TryParse(args[0], out int day))
@@ -17,7 +17,7 @@ if (args.Length > 0)
 }
 else
 {
-    daysToRun.Add(DateTime.Now.Day);
+    daysToRun.Add(DateTime.Now > new DateTime(2021, 12, 25) ? 25 : DateTime.Now.Day);
 }
 
 
