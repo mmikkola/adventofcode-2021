@@ -25,12 +25,21 @@ var asm = System.Reflection.Assembly.GetExecutingAssembly().GetName();
 
 foreach (int day in daysToRun)
 {
-    var problem = (ProblemBase)Activator.CreateInstance(asm.Name, $"adventofcode_2021.Problems.Day{day}").Unwrap();
+    ProblemBase problem;
+
+    try
+    {
+        problem = (ProblemBase)Activator.CreateInstance(asm.Name, $"adventofcode_2021.Problems.Day{day}").Unwrap();
+    }
+    catch
+    {
+        continue;
+    }
 
     var timer = System.Diagnostics.Stopwatch.StartNew();
     try
     {
-        var part1 = problem.Part1();
+        var part1 = problem?.Part1();
         long elapsed = timer.ElapsedMilliseconds;
         Console.WriteLine($"Solved Day {day} Part 1 in {elapsed}ms. Result: {part1}");
     }
@@ -38,7 +47,7 @@ foreach (int day in daysToRun)
     timer.Restart();
     try
     {
-        var part2 = problem.Part2();
+        var part2 = problem?.Part2();
         long elapsed = timer.ElapsedMilliseconds;
         Console.WriteLine($"Solved Day {day} Part 2 in {elapsed}ms. Result: {part2}");
     }

@@ -83,18 +83,16 @@ namespace adventofcode_2021.Problems
 
             var sb = new StringBuilder();
 
-            sb.AppendLine();
-
             for(int y = 0; y <= height; y++)
             {
+                sb.AppendLine();
                 for(int x = 0; x <= width; x++)
                 {
                     if (dots.Contains((x, y)))
-                        sb.Append('#');
+                        sb.Append('█');
                     else
                         sb.Append(' ');
                 }
-                sb.AppendLine();
             }    
             
             return sb.ToString();
